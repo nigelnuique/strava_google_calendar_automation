@@ -30,7 +30,11 @@ jobs:
       run: mkdir -p credentials
 
     - name: Create Google credentials file
-      run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials/token.json
+      run: |
+        mkdir -p credentials
+        echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials/token.json
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
     - name: Run sync script
       env:
