@@ -8,7 +8,7 @@ on:
         required: false
         default: 'Manual trigger'
   schedule:
-    - cron: '0 1 * * *'  # runs every day at 1AM UTC (11AM Melbourne time)
+    - cron: '30 1 * * *'  # runs every day at 1:30 AM UTC (11:30 AM Melbourne time)
 
 jobs:
   sync:
