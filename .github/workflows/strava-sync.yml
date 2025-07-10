@@ -26,20 +26,11 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Create credentials directory
-      run: mkdir -p credentials
-
-    - name: Create Google credentials file
-      run: |
-        mkdir -p credentials
-        echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials/token.json
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-
     - name: Run sync script
       env:
         STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
         STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
         STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
         GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       run: python main.py

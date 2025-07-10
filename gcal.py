@@ -11,7 +11,15 @@ calendar_id = os.getenv("GOOGLE_CALENDAR_ID")
 
 def get_calendar_service():
     try:
-        creds = Credentials.from_authorized_user_file('credentials/token.json')
+        # Try to get credentials from environment variable first (for GitHub Actions)
+        google_credentials = os.getenv('GOOGLE_CREDENTIALS')
+        if google_credentials:
+            import json
+            creds_data = json.loads(google_credentials)
+            creds = Credentials.from_authorized_user_info(creds_data)
+        else:
+            # Fallback to file for local development
+            creds = Credentials.from_authorized_user_file('credentials/token.json')
         
         # Check if credentials are expired and refresh if needed
         if not creds.valid:
