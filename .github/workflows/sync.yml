@@ -2,6 +2,11 @@ name: Strava to Calendar Sync
 
 on:
   workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual run'
+        required: false
+        default: 'Manual trigger'
   schedule:
     - cron: '0 1 * * *'  # runs every day at 1AM UTC (11AM Melbourne time)
 
