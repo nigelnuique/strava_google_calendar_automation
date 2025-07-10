@@ -1,11 +1,11 @@
 name: Sync Strava to Calendar
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
   push:
     branches: [ master ]
   schedule:
-    - cron: '25 3 * * *'  # 1:25 PM Melbourne time (3:25 AM UTC)
+    - cron: '27 3 * * *'
 
 jobs:
   sync:
