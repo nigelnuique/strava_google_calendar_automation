@@ -9,7 +9,7 @@ This project runs daily via GitHub Actions to:
 
 ## ✨ **Features**
 
-- **🔄 Automated sync**: Runs daily at 11 AM Melbourne time
+- **🔄 Automated sync**: Runs daily at 2:05 PM Melbourne time
 - **📅 Smart scheduling**: Creates events with proper duration and timing
 - **🗑️ Duplicate cleanup**: Removes overlapping planned events
 - **⚡ Zero maintenance**: Set it once, runs forever
