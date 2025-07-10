@@ -2,7 +2,7 @@
 
 🏃‍♂️ Automatically sync your Strava workout activities to Google Calendar and remove overlapping planned events.
 
-## ⚠️ Security Notice
+## Security Notice
 
 This project handles sensitive authentication tokens. **Never commit credentials to version control.** Follow the security guidelines below.
 
