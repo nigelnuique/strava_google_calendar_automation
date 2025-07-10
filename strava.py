@@ -26,10 +26,12 @@ def get_access_token():
         
         return data["access_token"]
     except requests.exceptions.RequestException as e:
-        print(f"❌ Error getting Strava access token: {e}")
+        print(f"❌ Error getting Strava access token: Network request failed")
+        print(f"💡 Check your internet connection and API credentials")
         raise
     except (KeyError, ValueError) as e:
-        print(f"❌ Error parsing Strava token response: {e}")
+        print(f"❌ Error parsing Strava token response: Invalid API response")
+        print(f"💡 Check if your Strava credentials are correct")
         raise
 
 def get_recent_activities():

@@ -23,14 +23,25 @@ def main():
     print("Secret name: GOOGLE_CREDENTIALS")
     print("Secret value (copy the entire content below):")
     print("-" * 60)
+    print("⚠️  WARNING: The next output contains sensitive credentials!")
+    print("⚠️  Only continue if you're in a secure environment")
+    print("⚠️  Clear your terminal history after copying the token")
     
-    # Read and display the token content for easy copying
-    with open('credentials/token.json', 'r') as token:
-        token_content = token.read()
-        print(token_content)
+    # Ask for confirmation before displaying sensitive content
+    confirmation = input("\nPress 'y' to display credentials for GitHub secret setup: ")
+    if confirmation.lower() == 'y':
+        # Read and display the token content for easy copying
+        with open('credentials/token.json', 'r') as token:
+            token_content = token.read()
+            print("\n" + "-" * 60)
+            print("📋 COPY THIS CONTENT TO GITHUB SECRET:")
+            print("-" * 60)
+            print(token_content)
+            print("-" * 60)
+    else:
+        print("\n⚠️  Credentials not displayed. You can manually copy from credentials/token.json")
     
-    print("-" * 60)
-    print("📝 How to add this secret to GitHub:")
+    print("\n📝 How to add this secret to GitHub:")
     print("1. Go to your GitHub repository")
     print("2. Click Settings > Secrets and variables > Actions")
     print("3. Click 'New repository secret'")
@@ -38,6 +49,7 @@ def main():
     print("5. Value: Copy the entire content above")
     print("6. Click 'Add secret'")
     print("\n⚠️  Keep this token secure and never commit it to version control!")
+    print("🧹 Remember to clear your terminal history after copying!")
 
 if __name__ == '__main__':
     main()

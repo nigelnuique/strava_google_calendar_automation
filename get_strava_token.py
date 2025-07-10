@@ -37,7 +37,7 @@ try:
         print("\n📝 Add these to your .env file:")
         print(f"STRAVA_CLIENT_ID={client_id}")
         print(f"STRAVA_CLIENT_SECRET={client_secret[:10]}...")
-        print(f"STRAVA_REFRESH_TOKEN={data['refresh_token']}")
+        print(f"STRAVA_REFRESH_TOKEN={data['refresh_token'][:20]}...")
         print("\n⚠️  Keep these tokens secure and never commit them to version control!")
     else:
         print("❌ Error:", response.status_code, response.text)
