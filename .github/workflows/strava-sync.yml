@@ -1,4 +1,4 @@
-name: Strava to Calendar Sync
+name: Strava Calendar Sync
 
 on:
   workflow_dispatch:
@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -38,4 +38,4 @@ jobs:
         STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
         STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
         GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
-      run: python main.py
+      run: python main.py 
