@@ -83,7 +83,7 @@ In your forked repository, go to **Settings → Secrets and variables → Action
 
 ## 📅 **How It Works**
 
-1. **Daily Schedule**: GitHub Actions runs the sync at 11 AM Melbourne time (1 AM UTC)
+1. **Daily Schedule**: GitHub Actions runs the sync at 2:05 PM Melbourne Time
 2. **Activity Fetch**: Gets your Strava activities from the last 3 days
 3. **Event Creation**: Creates calendar events with format: `"Activity Type – Activity Name"`
 4. **Duplicate Removal**: Finds and removes any overlapping planned events
@@ -95,7 +95,7 @@ In your forked repository, go to **Settings → Secrets and variables → Action
 Edit `.github/workflows/sync-calendar.yml` and modify the cron expression:
 ```yaml
 schedule:
-  - cron: '0 1 * * *'  # Daily at 1 AM UTC (11 AM Melbourne)
+  - cron: '5 4 * * *'  # Daily at 4:05 UTC
 ```
 
 ### Modify Lookback Period
