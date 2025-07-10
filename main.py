@@ -26,7 +26,22 @@ def validate_environment():
         print("\n📝 Please set these in your .env file or environment")
         sys.exit(1)
 
-    print("✅ All required environment variables are set")
+    # Check for Google credentials (either from env var or local file)
+    google_credentials = os.getenv('GOOGLE_CREDENTIALS')
+    credentials_file_exists = os.path.exists('credentials/token.json')
+    
+    if not google_credentials and not credentials_file_exists:
+        print("❌ Google credentials not found!")
+        print("   Neither GOOGLE_CREDENTIALS environment variable nor credentials/token.json file exists")
+        print("\n🔧 To fix this:")
+        print("   For local development: Run 'python authorize_google.py'")
+        print("   For GitHub Actions: Set GOOGLE_CREDENTIALS secret in your repository")
+        sys.exit(1)
+    
+    if google_credentials:
+        print("✅ All required environment variables are set (using GOOGLE_CREDENTIALS)")
+    else:
+        print("✅ All required environment variables are set (using local credentials file)")
 
 
 def is_match(event, activity):

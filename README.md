@@ -43,6 +43,10 @@ pip install -r requirements.txt
    ```bash
    python authorize_google.py
    ```
+   
+   **Note:** This script will:
+   - Create `credentials/token.json` for local development
+   - Display the token content for setting up the `GOOGLE_CREDENTIALS` secret in GitHub Actions
 
 ### 4. Environment Variables
 
@@ -109,10 +113,12 @@ These files contain sensitive data and are automatically ignored by git:
    - Ensure all required variables are set in `.env`
 
 2. **"Google credentials not found"**
-   - Run `python authorize_google.py` first
+   - For local development: Run `python authorize_google.py` first
+   - For GitHub Actions: Ensure `GOOGLE_CREDENTIALS` secret is set correctly
 
 3. **"Invalid credentials"**
    - Tokens may be expired; re-run authorization
+   - For GitHub Actions: Update the `GOOGLE_CREDENTIALS` secret with fresh credentials
 
 4. **"No activities found"**
    - Check Strava API permissions and date range

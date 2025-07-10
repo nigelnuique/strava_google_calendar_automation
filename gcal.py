@@ -26,13 +26,21 @@ def get_calendar_service():
             if creds.expired and creds.refresh_token:
                 print("🔄 Refreshing expired Google credentials...")
                 creds.refresh(Request())
-                # Save the refreshed credentials
-                with open('credentials/token.json', 'w') as token:
-                    token.write(creds.to_json())
-                print("✅ Google credentials refreshed successfully")
+                
+                # Only save refreshed credentials to file if using local file method
+                if not google_credentials:
+                    with open('credentials/token.json', 'w') as token:
+                        token.write(creds.to_json())
+                    print("✅ Google credentials refreshed and saved to file")
+                else:
+                    print("✅ Google credentials refreshed (using environment variable)")
+                    print("ℹ️  Note: Updated credentials are not persisted when using GOOGLE_CREDENTIALS env var")
             else:
                 print("❌ Google credentials are invalid and cannot be refreshed")
-                print("🔧 Please run authorize_google.py to re-authenticate")
+                if google_credentials:
+                    print("🔧 Please update your GOOGLE_CREDENTIALS secret with fresh credentials")
+                else:
+                    print("🔧 Please run authorize_google.py to re-authenticate")
                 raise ValueError("Invalid Google credentials")
         
         return build('calendar', 'v3', credentials=creds)
