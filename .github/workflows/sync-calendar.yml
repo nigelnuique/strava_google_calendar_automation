@@ -1,0 +1,29 @@
+name: Sync Strava to Calendar
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 1 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install requirements
+      run: pip install -r requirements.txt
+    - name: Create credentials
+      run: |
+        mkdir -p credentials
+        echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials/token.json
+    - name: Sync activities
+      env:
+        STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+        STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+        STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+        GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
+      run: python main.py 
