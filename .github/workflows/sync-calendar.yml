@@ -3,7 +3,7 @@ name: Sync Strava to Calendar
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 1 * * *'
+    - cron: '5 12 * * *'
 
 jobs:
   sync:
