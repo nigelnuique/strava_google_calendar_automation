@@ -7,7 +7,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-calendar_id = os.getenv("GOOGLE_CALENDAR_ID")
+calendar_id = os.getenv("GOOGLE_CALENDAR_ID", "").strip()
 
 def get_calendar_service():
     try:
